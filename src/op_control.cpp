@@ -37,25 +37,22 @@ void cata_shoot(){
     }
 }
 
+bool shooting = false;  // Variable to track if we're shooting or not
+
 void skills_cata() {
-
-    bool shooting = false;  
-
-    while (true) {
-        if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
-            if (!shooting) {  
-                shooting = true;
-                catapult.move_velocity(-150);  
-            } else {
-                shooting = false;
-                catapult.move_velocity(0);  
-            }
-
-            while (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
-                pros::delay(10);  
-            }
+    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
+        if (!shooting) {  // If we're not already shooting, start shooting
+            shooting = true;
+            catapult.move_velocity(-150);  // Start the catapult motor
+        } else {  // If we're already shooting, stop shooting
+            shooting = false;
+            catapult.move_velocity(0);  // Stop the catapult motor
         }
 
+        // Wait until the B button is released to avoid rapid toggling
+        while (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
+            pros::delay(10);  // Small delay to prevent CPU hogging
+        }
     }
 }
 
