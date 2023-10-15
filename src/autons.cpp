@@ -240,6 +240,11 @@ void interfered_example() {
 }
 
 
+void test(){
+  intake.move_velocity(-600);
+  pros::delay(1000);
+
+}
 
 // . . .
 // Make your own autonomous functions here!
@@ -261,67 +266,65 @@ void skills_auton(){
 
 void offense_auton(){
   pistonWingA.set_value(true);
-  pros::delay(1000);
-  chassis.set_turn_pid(180, TURN_SPEED);
+  pistonWingB.set_value(true);
+  chassis.set_drive_pid(-90, DRIVE_SPEED);
   chassis.wait_drive();
-  pistonWingA.set_value(false);
-  pros::delay(1000);
+  chassis.set_turn_pid(90, TURN_SPEED);
+  chassis.wait_drive();
+  //intake.move_velocity(600);
+  //pros::delay(2000);
+  //intake.move_velocity(0);
+  //chassis.set_drive_pid(-16, DRIVE_SPEED);
+  //chassis.wait_drive();
   chassis.set_turn_pid(-90, TURN_SPEED);
   chassis.wait_drive();
-  chassis.set_drive_pid(48, DRIVE_SPEED);
-  intake.move_velocity(-600);
-  pros::delay(200);
-  intake.move_voltage(0);
-  chassis.set_drive_pid(-44, DRIVE_SPEED);
-  chassis.wait_drive();
-  chassis.set_turn_pid(0, TURN_SPEED);
-  chassis.wait_drive();
-  chassis.set_drive_pid(48, DRIVE_SPEED);
-  chassis.wait_drive();
+  //chassis.set_drive_pid(60, DRIVE_SPEED);
+  //chassis.wait_drive();
+  //intake.move_velocity(-600);
+  //pros::delay(2000);
+  //intake.move_velocity(0);
+  pistonWingA.set_value(true);
+  pistonWingB.set_value(true);
+
   chassis.set_turn_pid(90, TURN_SPEED);
+  chassis.wait_drive();
+  chassis.set_drive_pid(18, DRIVE_SPEED);
+  intake.move_velocity(-600);
+  chassis.wait_drive();
+  intake.move_velocity(0);
+  chassis.set_turn_pid(-90, TURN_SPEED);
+  chassis.wait_drive();
+  pistonWingA.set_value(false);
+  pistonWingB.set_value(false);
+  pros::delay(10);
+  chassis.set_drive_pid(36, DRIVE_SPEED);
   chassis.wait_drive();
   intake.move_velocity(600);
   pros::delay(200);
-  intake.move_voltage(0);
-  chassis.set_turn_pid(0, TURN_SPEED);
-  chassis.wait_drive();
-  chassis.set_drive_pid(-40, DRIVE_SPEED);
-  chassis.wait_drive();
-  chassis.set_turn_pid(90, TURN_SPEED);
-  chassis.set_drive_pid(24, DRIVE_SPEED);
-  chassis.wait_drive();
-  intake.move_velocity(-600);
-  pros::delay(200);
-  intake.move_voltage(0);
-  chassis.set_turn_pid(0, TURN_SPEED);
-  chassis.wait_drive();
-  intake.move_velocity(600);
-  pros::delay(200);
-  intake.move_voltage(0);
-  chassis.set_turn_pid(270, TURN_SPEED);
-  chassis.wait_drive();
+  intake.move_velocity(0);
+  pistonWingA.set_value(true);
+  pistonWingB.set_value(false);
+  pros::delay(10);
 }
 
 void defense_auton(){
-  pistonWingA.set_value(true);
-  pros::delay(1000);
+  pistonWingA.set_value(false);
+  pros::delay(10);
   chassis.set_turn_pid(180, TURN_SPEED);
   chassis.wait_drive();
-  pistonWingA.set_value(false);
-  pros::delay(1000);
+  pistonWingA.set_value(true);
+  pros::delay(10);
   chassis.set_drive_pid(24, DRIVE_SPEED);
   chassis.wait_drive();
   chassis.set_turn_pid(90, TURN_SPEED);
   chassis.wait_drive();
   chassis.set_drive_pid(12, DRIVE_SPEED);
-  chassis.wait_drive();
   intake.move_velocity(-600);
-  pros::delay(200);
+  chassis.wait_drive();
   intake.move_voltage(0);
   chassis.set_turn_pid(180, TURN_SPEED);
-  chassis.wait_drive();
   catapult.move_velocity(600);
-  pros::delay(200);
+  chassis.wait_drive();
   catapult.move_voltage(0);
   chassis.set_drive_pid(60, DRIVE_SPEED);
   chassis.wait_drive();
@@ -330,13 +333,11 @@ void defense_auton(){
   chassis.set_drive_pid(12, DRIVE_SPEED);
   chassis.wait_drive();
   intake.move_velocity(-600);
-  pros::delay(200);
+  chassis.wait_drive();
   intake.move_voltage(0);
   chassis.set_turn_pid(270, TURN_SPEED);
-  catapult.move_velocity(600);
-  pros::delay(200);
   catapult.move_velocity(-600);
-  pros::delay(200);
+  pros::delay(400);
   catapult.move_voltage(0);
   chassis.set_drive_pid(-12, DRIVE_SPEED);
 }
